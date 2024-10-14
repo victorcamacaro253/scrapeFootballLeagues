@@ -6,9 +6,12 @@ const app = express()
 
 app.get('/',async(req,res)=>{
     try {
-        const data = await scrapeData();
+       const data = await scrapeData();
+       /*
         const html = createHtmlTable(data);
-        res.send(html)
+        res.send(html)*/
+
+        res.json(data)
     } catch (error) {
         res.status(500).send('Error ')
         console.log(error)
