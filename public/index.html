@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumir API</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .sdc-site-table__cell-image {
+    aspect-ratio: 1 / 1;
+    display: inline-block;
+    margin: 0 -15px 0 -1px;
+    vertical-align: middle;
+    
+    width: 24px;}
+    </style>
+</head>
+<body>
+    <h1>Datos de la API</h1>
+
+    <h1>Premier League</h1>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Posición</th>
+                <th></th>
+                <th>Equipo</th>
+                <th>PJ</th>
+                <th>PG</th>
+                <th>PE</th>
+                <th>PP</th>
+                <th>GA</th>
+                <th>GC</th>
+                <th>DF</th>
+                <th>Puntos</th>
+                
+            </tr>
+        </thead>
+        <tbody id="data-body"></tbody>
+    </table>
+
+    <script>
+        // Hacemos una solicitud a la API
+        fetch('/premier')
+            .then(response => response.json())
+            .then(data => {
+                const tbody = document.getElementById('data-body');
+
+                // Usar map para crear las filas
+                data.equipos.map((equipo, index) => {
+                    const row = document.createElement('tr');
+
+                    row.innerHTML = `
+                        <td>${data.posiciones[index]}</td>
+                        <td> <img loading="lazy" src=${data.img[index]} class="sdc-site-table__cell-image"></td>
+                        <td>${equipo}</td>
+                        <td>${data.PJ[index]}</td>
+                        <td>${data.victorias[index]}</td>
+                        <td>${data.empates[index]}</td>
+                        <td>${data.derrotas[index]}</td>
+                         <td>${data.GA[index]}</td>
+                       <td>${data.GC[index]}</td>
+                        <td>${data.DF[index]}</td>
+                        <td>${data.puntos[index]}</td>
+                       
+
+
+
+
+
+                    `;
+
+                    tbody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
+
