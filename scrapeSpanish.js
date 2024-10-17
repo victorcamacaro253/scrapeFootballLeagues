@@ -37,10 +37,6 @@ async function scrapeDataSpain() {
     equipos.push($(element).text().trim());
   });*/
 
-  // Extraer puntos
-  $('.league-table__points.points').slice(1, 21).each((i, punto) => {
-    puntos.push($(punto).text().trim());
-  });
 
   // Función para extraer datos de columnas
   const extractColumnData = (headerIndex, array) => {
@@ -60,6 +56,7 @@ async function scrapeDataSpain() {
   extractColumnData(6, GA); // Goles a favor
   extractColumnData(7, GC); // Goles en contra
   extractColumnData(8, DF); // Diferencia de goles
+  extractColumnData(9, puntos); // Puntos
 
   // Extraer todas las imágenes
   $('img.sdc-site-table__cell-image').each((j, imgElement) => {

@@ -43,7 +43,7 @@ async function scrapeData() {
     puntos.push($(punto).text())
    })
 
-   
+   /*
    
      // Extraer posiciones usando clase y atributo headers
      D('td.sdc-site-table__cell[headers="th--2"]').each((i, element) => {
@@ -93,12 +93,30 @@ async function scrapeData() {
       DF.push(posicion);
   });
 
-
+*/
    // Extraer todas las imágenes
    D('img.sdc-site-table__cell-image').each((j, imgElement) => {
     const imgSrc = D(imgElement).attr('src'); // Obtener el src de la imagen
     img.push(imgSrc); // Añadir la URL de la imagen al array
   });
+
+
+const extractColumnData = (headerIndex,array)=>{
+  D(`td.sdc-site-table__cell[headers="th--${headerIndex}"]`).each((i,element)=>{
+    const posicion = D(element).text().trim();
+    array.push(posicion)
+  })
+}
+
+
+extractColumnData(2,PJ)
+extractColumnData(3,victorias)
+extractColumnData(4,empates)
+extractColumnData(5,derrotas)
+extractColumnData(6,GA)
+extractColumnData(7,GC)
+extractColumnData(8,DF)
+
 
 
   return { headers, posiciones, equipos,puntos,empates,victorias,derrotas,PJ,GA,GC,DF,img };

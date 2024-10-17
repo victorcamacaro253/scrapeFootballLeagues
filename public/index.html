@@ -29,7 +29,7 @@
     <h1>Datos de la API</h1>
 
     <h1>Premier League</h1>
-    <table id="data-table">
+    <table id="data-table-premier">
         <thead>
             <tr>
                 <th>Posición</th>
@@ -46,45 +46,85 @@
                 
             </tr>
         </thead>
-        <tbody id="data-body"></tbody>
+        <tbody id="data-body-premier"></tbody>
     </table>
 
-    <script>
-        // Hacemos una solicitud a la API
-        fetch('/premier')
-            .then(response => response.json())
-            .then(data => {
-                const tbody = document.getElementById('data-body');
-
-                // Usar map para crear las filas
-                data.equipos.map((equipo, index) => {
-                    const row = document.createElement('tr');
-
-                    row.innerHTML = `
-                        <td>${data.posiciones[index]}</td>
-                        <td> <img loading="lazy" src=${data.img[index]} class="sdc-site-table__cell-image"></td>
-                        <td>${equipo}</td>
-                        <td>${data.PJ[index]}</td>
-                        <td>${data.victorias[index]}</td>
-                        <td>${data.empates[index]}</td>
-                        <td>${data.derrotas[index]}</td>
-                         <td>${data.GA[index]}</td>
-                       <td>${data.GC[index]}</td>
-                        <td>${data.DF[index]}</td>
-                        <td>${data.puntos[index]}</td>
-                       
+    <h1>La Liga</h1>
 
 
+    <table id="data-table-laliga">
+        <thead>
+            <tr>
+                <th>Posición</th>
+                <th></th>
+                <th>Equipo</th>
+                <th>PJ</th>
+                <th>PG</th>
+                <th>PE</th>
+                <th>PP</th>
+                <th>GA</th>
+                <th>GC</th>
+                <th>DF</th>
+                <th>Puntos</th>
+                
+            </tr>
+        </thead>
+        <tbody id="data-body-laliga"></tbody>
+    </table>
 
 
+    <h1>Serie A</h1>
 
-                    `;
 
-                    tbody.appendChild(row);
-                });
-            })
-            .catch(error => console.error('Error:', error));
-    </script>
+    <table id="data-table-SerieA">
+        <thead>
+            <tr>
+                <th>Posición</th>
+                <th></th>
+                <th>Equipo</th>
+                <th>PJ</th>
+                <th>PG</th>
+                <th>PE</th>
+                <th>PP</th>
+                <th>GA</th>
+                <th>GC</th>
+                <th>DF</th>
+                <th>Puntos</th>
+                
+            </tr>
+        </thead>
+        <tbody id="data-body-SerieA"></tbody>
+    </table>
+
+<h1>Bundesliga</h1>
+    
+    <table id="data-table-bundesliga">
+        <thead>
+            <tr>
+                <th>Posición</th>
+                <th></th>
+                <th>Equipo</th>
+                <th>PJ</th>
+                <th>PG</th>
+                <th>PE</th>
+                <th>PP</th>
+                <th>GA</th>
+                <th>GC</th>
+                <th>DF</th>
+                <th>Puntos</th>
+                
+            </tr>
+        </thead>
+        <tbody id="data-body-bundesliga"></tbody>
+    </table>
+
+
+    <script src="js/premier.js"></script>
+    <script src="js/laliga.js"></script>
+    <script src="js/seriea.js"></script>
+    <script src="js/bundesliga.js"></script>
+
+    
 </body>
 </html>
 

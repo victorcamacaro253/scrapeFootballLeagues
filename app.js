@@ -1,6 +1,8 @@
 import express from 'express';
 import scrapeData from './scrape.js';
 import createHtmlTable from './table.js';
+import scrapeDataItaly from './scrapeItaly.js';
+import scrapeDataGermany from './scrapeGermany.js';
 import cors from 'cors'
 import scrapeDataSpain from './scrapeSpanish.js';
 const app = express()
@@ -41,6 +43,29 @@ app.get('/spain',async(req,res)=>{
          res.status(500).send('Error ')
          console.log(error)
      }
+})
+
+
+app.get('/italy',async(req,res)=>{
+    try {
+        const data  = await scrapeDataItaly();
+        res.json(data)
+    } catch (error) {
+        res.status(500).send('Error')
+        console.log(error)
+    }
+})
+
+
+app.get('/germany',async (req,res)=>{
+    try {
+        const data = await scrapeDataGermany()
+        res.json(data)
+    
+    } catch (error) {
+        res.status(500).send('Error')
+        console.log(error)
+    }
 })
 const PORT = process.env.PORT ?? 3006
 
