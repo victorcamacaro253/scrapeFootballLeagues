@@ -1,5 +1,5 @@
 import get from 'axios'
-import {load} from 'cheerio'
+import { load } from 'cheerio'
 
 
 
@@ -11,7 +11,7 @@ async function scrapeDataGermany() {
 
    const $ = load(data)
 
-   let posiciones=  [];
+   let posiciones=[];
    let equipos =[];
    let puntos= [];
    let victorias=[];
@@ -19,7 +19,7 @@ async function scrapeDataGermany() {
    let derrotas=[]
    let PJ=[]
    let GA=[]
-   let GF=[]
+   let GC=[]
    let DF=[]
    let img=[]
 
@@ -30,10 +30,6 @@ async function scrapeDataGermany() {
     })
    }
     
- $('img.sdc-site-table__cell-image').each((i,imgElement)=>{
-    const imgSrc = $(imgElement).attr('src')
-    img.push(imgElement)
- })
 
 extractColumnData(0,posiciones)
 extractColumnData(1,equipos)
@@ -41,19 +37,19 @@ extractColumnData(2,PJ)
 extractColumnData(3,victorias)
 extractColumnData(4,empates)
 extractColumnData(5,derrotas)
-extractColumnData(6,GF)
-extractColumnData(7,GA)
+extractColumnData(7,GC)
+extractColumnData(6,GA)
 extractColumnData(8,DF)
 extractColumnData(9,puntos)
 
 
-$('img-sdc-site-table__cell-image').each((i,imgElement)=>{
+$('img.sdc-site-table__cell-image').each((i,imgElement)=>{
     const imgsrc = $(imgElement).attr('src')
     img.push(imgsrc)
     
 })
 
-return {posiciones,equipos,puntos,empates,victorias,derrotas,PJ  , GA , GF , DF , img }
+return {posiciones,equipos,puntos,empates,victorias,derrotas,PJ  , GA ,GC , DF , img }
 
 }
 

@@ -5,6 +5,10 @@ import scrapeDataItaly from './scrapeItaly.js';
 import scrapeDataGermany from './scrapeGermany.js';
 import cors from 'cors'
 import scrapeDataSpain from './scrapeSpanish.js';
+import scrapeDataFrance from './scrapeFrance.js';
+import scrapeLaLigaLeaders from './scrapeStats.js';
+
+
 const app = express()
 
 app.use(cors())
@@ -26,10 +30,7 @@ app.get('/premier',async(req,res)=>{
 })
 
 
-app.get('/england',async(req,res)=>{
-    const data = await scrapeData();
-    res.json(data)
-})
+
 
 app.get('/spain',async(req,res)=>{
     try {
@@ -59,7 +60,7 @@ app.get('/italy',async(req,res)=>{
 
 app.get('/germany',async (req,res)=>{
     try {
-        const data = await scrapeDataGermany()
+        const data = await scrapeDataGermany();
         res.json(data)
     
     } catch (error) {
@@ -67,6 +68,29 @@ app.get('/germany',async (req,res)=>{
         console.log(error)
     }
 })
+
+
+app.get('/france',async(req,res)=>{
+    try {
+        const data = await scrapeDataFrance()
+        res.json(data)
+    } catch (error) {
+        res.status(500).send('Error')
+        console.log(error)
+    }
+})
+
+
+app.get('/stats',async(req,res)=>{
+    try {
+        const data = await scrapeLaLigaLeaders();
+        res.json(data)
+    } catch (error) {
+        res.status(500).send('Error')
+        console.log(error)
+    }
+})
+
 const PORT = process.env.PORT ?? 3006
 
 
