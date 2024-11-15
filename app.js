@@ -7,6 +7,7 @@ import cors from 'cors'
 import scrapeDataSpain from './scrapeSpanish.js';
 import scrapeDataFrance from './scrapeFrance.js';
 import scrapeLaLigaLeaders from './scrapeStats.js';
+import scrapeDataConmebol from './scrapeConmebol.js';
 
 
 const app = express()
@@ -84,11 +85,23 @@ app.get('/france',async(req,res)=>{
 app.get('/stats',async(req,res)=>{
     try {
         const data = await scrapeLaLigaLeaders();
+        console.log(data)
         res.json(data)
     } catch (error) {
         res.status(500).send('Error')
         console.log(error)
     }
+})
+
+app.get('/conmebol', async(req,res)=>{
+ try {
+    const data = await scrapeDataConmebol();
+    console.log(data)
+    res.json(data)
+ } catch (error) {
+    console.log(error)
+    res.status(500).send('Error')
+ }
 })
 
 const PORT = process.env.PORT ?? 3006

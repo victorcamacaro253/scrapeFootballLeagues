@@ -8,19 +8,17 @@ fetch('/stats')
  data.equipos.map((equipo,index)=>{
     const row = document.createElement('tr')
 
+     // Asegúrate de que la clase del ícono esté disponible en data.icon
+     const iconClass = data.icon[index];
+
     row.innerHTML = `
       <td>${data.prueba[index]}</td>
       <td><img loading="lazy" src=${data.img[index]} class="sdc-site-table__cell-image"></td>
       <td>${equipo}</td>
-      <td>${data.PJ[index]}</td>
-      <td>${data.victorias[index]}</td>
-      <td>${data.empates[index]}</td>
-      <td>${data.derrotas[index]}</td>
-      <td>${data.GA[index]}</td>
-      <td>${data.GC[index]}</td>
-      <td>${data.DF[index]}</td>
-      <td>${data.puntos[index]}</td>
-      
+      <td>${data.prueba[index]}</td>
+      <td>${data.paisesNuevos[index]}</td>
+      <td>${data.goles[index]}</td>
+     
     `
 
     tbody.appendChild(row)

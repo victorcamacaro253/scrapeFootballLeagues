@@ -13,7 +13,8 @@ async function scrapeLaLigaLeaders() {
         const  pais=[]
        const link_players=[]
        const link_teams=[]
-        const img=[]
+        const img = []
+        const icon=[]
 
        $('p.styled__TextStyled-sc-1mby3k1-0.cYEkps').slice(5).each((i, element) => {
             const posicion = $(element).text().trim();
@@ -32,6 +33,7 @@ async function scrapeLaLigaLeaders() {
             img.push(imgsrc)
             
         })
+      
 
         //------------------------------------------------------------------
 
@@ -43,6 +45,12 @@ async function scrapeLaLigaLeaders() {
         $('td.styled__TdStyled-sc-57jgok-4.iBOaCu').each((i, element) => {
             const posicion = $(element).find('a.link').attr('href')
             link_teams.push(posicion);
+        });
+
+
+        $('div.styled__ShieldContainer-sc-1opls7r-0.kTUZAV').each((i, element) => {
+            const posicion = $(element).find('i').text().trim()
+            icon.push(posicion);
         });
 
         //_-------------------------------------------------------------------
@@ -72,7 +80,7 @@ async function scrapeLaLigaLeaders() {
            const goles = [ pais[6], pais[9], pais[12], pais[15], pais[18], pais[21], pais[24], pais[27], pais[30], pais[33], pais[36], pais[39], pais[42], pais[45], pais[48], pais[51], pais[54], pais[57], pais[60], pais[63]]
 
 
-        return { prueba,equipos,paisesNuevos ,goles, img,link_players,link_teams};
+        return { prueba,equipos,paisesNuevos ,goles, img,link_players,link_teams,icon};
 
     } catch (error) {
         console.error('Error scraping La Liga leaders:', error);
