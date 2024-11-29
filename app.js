@@ -8,6 +8,9 @@ import scrapeDataSpain from './scrapeSpanish.js';
 import scrapeDataFrance from './scrapeFrance.js';
 import scrapeLaLigaLeaders from './scrapeStats.js';
 import scrapeDataConmebol from './scrapeConmebol.js';
+import scrapeDataChampions from './scrapeChampions.js';
+import scrapeDataChampionsStats from './scrappeChampionsStats.js';
+import scrapeDolarBCV from './scrappeDolarBCV.js';
 
 
 const app = express()
@@ -85,7 +88,6 @@ app.get('/france',async(req,res)=>{
 app.get('/stats',async(req,res)=>{
     try {
         const data = await scrapeLaLigaLeaders();
-        console.log(data)
         res.json(data)
     } catch (error) {
         res.status(500).send('Error')
@@ -93,16 +95,51 @@ app.get('/stats',async(req,res)=>{
     }
 })
 
-app.get('/conmebol', async(req,res)=>{
- try {
-    const data = await scrapeDataConmebol();
-    console.log(data)
-    res.json(data)
- } catch (error) {
-    console.log(error)
-    res.status(500).send('Error')
- }
+
+app.get('/conmebol',async(req,res)=>{
+    try {
+        const data = await scrapeDataConmebol();
+        res.json(data)
+        } catch (error) {
+            res.status(500).send('Error')
+            console.log(error)
+            }
 })
+
+app.get('/champions',async(req,res)=>{
+    try {
+        const data = await scrapeDataChampions();
+        res.json(data)
+        } catch (error) {
+            res.status(500).send('Error')
+            console.log(error)
+            }
+})
+
+
+app.get('/championsStats',async(req,res)=>{
+    try {
+        const data = await scrapeDataChampionsStats();
+        res.json(data)
+        } catch (error) {
+            res.status(500).send('Error')
+            console.log(error)
+            }
+})
+
+
+
+app.get('/dolarBCV',async(req,res)=>{
+    try {
+        const data = await scrapeDolarBCV();
+        res.json(data)
+        } catch (error) {
+            res.status(500).send('Error')
+            console.log(error)
+            }
+})
+
+
 
 const PORT = process.env.PORT ?? 3006
 
